@@ -1,3 +1,25 @@
+fetch("./region.json")
+.then(function(res){
+return res.json();
+})
+.then(function(data){
+  init(data.hokkaido);
+});
+function init(hokkaido){
+  console.log(hokkaido);
+  // contents.innerHTML += `<div>${hokkaido[0].spot[0].title}</div>`
+  // contents.innerHTML += `<div>${hokkaido[0].spot[0].detail}</div>`
+  
+  hokkaido[0].spot.forEach(function(el,key){
+    contents.innerHTML += `
+    <div class="title">${hokkaido[0].spot[key].title}</div>
+<div class="detail">${hokkaido[0].spot[key].detail}</div>
+    `
+  })
+  // hokkaido[0].spot[key].title
+  // hokkaido[0].spot[key].detail
+}
+// console.log(hokkaido);
 const data = [
   {
     area: "spot01",
@@ -41,6 +63,8 @@ const data = [
   },
 ];
 
+
+
 // console.log(data);
 
 const contents = document.querySelector(".contents"),
@@ -52,7 +76,7 @@ const numOfContent = data.length,
 let page = 1;
 
 const makeContent = (id) => {
-  //   console.log(id);
+    console.log(id);
   const content = document.createElement("li");
   //   console.log(data);
   content.classList.add("content");
